@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DBConf>
+	<ConDataSources>
+		<isDataSource>true</isDataSource>
+		<ConnectionSource name="MYSQL_DS">
+			<value>jndiLookup/mysql</value>
+		</ConnectionSource>
+		<ConnectionSource name="ORACLE_DS">
+			<value>jndiLookup/oracle</value>
+		</ConnectionSource>
+		<ConnectionSource name="PERVASIVE_DS">
+			<value>jndiLookup/pervasive</value>
+		</ConnectionSource>
+	</ConDataSources>
+	<ConDriverManagers>
+		<isDataSource>false</isDataSource>
+		<connectionSource name="MYSQL">
+			<driverClass>com.mysql.jdbc.Driver</driverClass>
+			<dburl>localhost:3306/cloud</dburl>
+			<dbuser>rajni</dbuser>
+			<dbpassword>rajni</dbpassword>
+		</connectionSource>
+		<connectionSource name="Oracle">
+			<driverClass>com.mysql.jdbc.Driver</driverClass>
+			<dburl>localhost:1521/cloud</dburl>
+			<dbuser>rajni</dbuser>
+			<dbpassword>rajni</dbpassword>
+		</connectionSource>
+		<connectionSource name="PERVASIVE">
+			<driverClass>com.mysql.jdbc.Driver</driverClass>
+			<dburl>localhost:3306/cloud</dburl>
+			<dbuser>rajni</dbuser>
+			<dbpassword>rajni</dbpassword>
+		</connectionSource>
+	</ConDriverManagers>
+</DBConf>
