@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DBConf>
 	<ConDataSources>
-		<isDataSource>true</isDataSource>
+		<isDataSource>false</isDataSource>
 		<ConnectionSource name="MYSQL_DS">
 			<value>jndiLookup/mysql</value>
 		</ConnectionSource>
@@ -16,11 +16,17 @@
 		<isDataSource>false</isDataSource>
 		<connectionSource name="MYSQL">
 			<driverClass>com.mysql.jdbc.Driver</driverClass>
-			<dburl>localhost:3306/cloud</dburl>
-			<dbuser>rajni</dbuser>
+			<dburl>jdbc:mysql://localhost:3306/easyshop</dburl>
+			<dbuser>root</dbuser>
 			<dbpassword>rajni</dbpassword>
 		</connectionSource>
-		<connectionSource name="Oracle">
+		<connectionSource name="ORACLE">
+			<driverClass>oracle.jdbc.driver.OracleDriver</driverClass>
+			<dburl>jdbc:oracle:thin:@localhost:1521:xe</dburl>
+			<dbuser>QAWEBD</dbuser>
+			<dbpassword>bv1</dbpassword>		
+		</connectionSource>
+		<!-- <connectionSource name="Oracle">
 			<driverClass>com.mysql.jdbc.Driver</driverClass>
 			<dburl>localhost:1521/cloud</dburl>
 			<dbuser>rajni</dbuser>
@@ -31,6 +37,6 @@
 			<dburl>localhost:3306/cloud</dburl>
 			<dbuser>rajni</dbuser>
 			<dbpassword>rajni</dbpassword>
-		</connectionSource>
+		</connectionSource> -->
 	</ConDriverManagers>
 </DBConf>

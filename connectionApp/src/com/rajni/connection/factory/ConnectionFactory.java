@@ -5,12 +5,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.log4j.Logger;
+
 import com.rajni.connection.beans.AllConDetailsIntf;
 
+/**
+ * @author rajni.ubhi
+ *
+ */
 public abstract class ConnectionFactory {
 
 	protected AllConDetailsIntf conDetails = null;
-
+	protected static Logger logger = Logger.getLogger(ConnectionFactory.class);
+	
 	public ConnectionFactory(AllConDetailsIntf conDetails) {
 		// TODO Auto-generated constructor stub
 		this.conDetails = conDetails;

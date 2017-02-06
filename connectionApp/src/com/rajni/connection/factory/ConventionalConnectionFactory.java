@@ -7,7 +7,11 @@ import java.sql.SQLException;
 import com.rajni.connection.beans.ConnectionDetails;
 import com.rajni.connection.beans.ConnectionTypes;
 
-public class ConventionalConnectionFactory extends ConnectionFactory{
+/**
+ * @author rajni.ubhi
+ *
+ */
+public class ConventionalConnectionFactory extends ConnectionFactory {
 
 	private String driverClass;
 	private String driverUrl;
@@ -32,6 +36,11 @@ public class ConventionalConnectionFactory extends ConnectionFactory{
 	void configure() {
 		// TODO Auto-generated method stub
 		try {
+			this.driverClass = conDetails.getDriverClass();
+			this.driverUrl = conDetails.getDriverUrl();
+			this.dbUser = conDetails.getDbUser();
+			this.dbPassword = conDetails.getDbPassword();
+			
 			if(conType == ConnectionTypes.ORACLE) {
 				if(!driversLoaded[IDX_ORACLE]) {
 					Class.forName(driverClass);  //uncomment later 
@@ -39,6 +48,7 @@ public class ConventionalConnectionFactory extends ConnectionFactory{
 				} 
 			} else if(conType == ConnectionTypes.MYSQL) {
 				if(!driversLoaded[IDX_MYSQL]) {
+					logger.info("DRIVER CLASS::"+driverClass);
 					Class.forName(driverClass);  //uncomment later
 					driversLoaded[IDX_MYSQL] = true;
 				}
@@ -48,19 +58,18 @@ public class ConventionalConnectionFactory extends ConnectionFactory{
 					driversLoaded[IDX_PERVASIVE] = true;
 				}
 			} 
-			this.driverClass = conDetails.getDriverClass();
-			this.driverUrl = conDetails.getDriverUrl();
-			this.dbUser = conDetails.getDbUser();
-			this.dbPassword = conDetails.getDbPassword();
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
 	}
 
+	
 	@Override
 	public Connection getConnection() throws SQLException {
 		// TODO Auto-generated method stub
+		logger.info("ABOUT TO CONNECT WITH DB USING DRIVER MANAGER !!!!!!!!");
 		return DriverManager.getConnection(driverUrl, dbUser, dbPassword);
 	}
 

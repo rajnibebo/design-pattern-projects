@@ -1,5 +1,9 @@
 package com.rajni.connection.beans;
 
+/**
+ * @author rajni.ubhi
+ *
+ */
 public class PropsConnectionDetail extends ConnectionDetails {
 	private boolean isDataSource;
 	private String driverClass;

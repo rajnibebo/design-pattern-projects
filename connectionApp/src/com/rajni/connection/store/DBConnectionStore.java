@@ -1,7 +1,9 @@
 package com.rajni.connection.store;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;
 
@@ -14,6 +16,10 @@ import com.rajni.connection.factory.ConventionalConnectionFactory;
 import com.rajni.connection.loaders.PropsConnectionLoader;
 import com.rajni.connection.loaders.XMLConnectionLoader;
 
+/**
+ * @author rajni.ubhi
+ *
+ */
 public class DBConnectionStore {
 	public static final String CON_SOURCE_XML = "XML";
 	public static final String CON_SOURCE_PROPS = "PROPERTIES";
@@ -31,17 +37,17 @@ public class DBConnectionStore {
 	// object not needed 
 	private DBConnectionStore() {		
 	}
-	public static void enableXML() {
+	private static void enableXML() {
 		enableLoaders[IDX_PROPS] = false;
 		enableLoaders[IDX_XML] = true;
 	}
 
-	public static void enableProps() {
+	private static void enableProps() {
 		enableLoaders[IDX_PROPS] = true;
 		enableLoaders[IDX_XML] = false;
 	}
 
-	public static void configure() {
+	static void configure() {
 		for (int i = 0; i < conLoaders.length; i++) {
 			ConnectionLoader loader = conLoaders[i];
 			if (enableLoaders[i]) {
@@ -64,10 +70,28 @@ public class DBConnectionStore {
 	}
 	
 	public static Connection getConnectionFromXml(ConnectionTypes conTypes) throws SQLException {
+		if(xmlConFactories.size() == 0) {
+			enableXML();
+			configure();
+		}
 		return xmlConFactories.get(conTypes).getConnection();
 	}
 	
 	public static Connection getConnectionThroughProps(ConnectionTypes conTypes) throws SQLException {
+		if(propsConFactories.size() == 0) {
+			enableProps();
+			configure();
+		}
 		return propsConFactories.get(conTypes).getConnection();
+	}
+
+	public static PreparedStatement addBindings(PreparedStatement stmt , ArrayList<String> params) throws SQLException {
+		if(stmt != null ) {
+			for(int i = 0 ; i < params.size() ; i++) {
+				String param = params.get(i);
+				stmt.setString(i+1, param);
+			}
+		}
+		return stmt;
 	}
 }

@@ -10,7 +10,11 @@ import javax.sql.DataSource;
 
 import com.rajni.connection.beans.AllConDetailsIntf;
 
-public class ContextConnectionFactory extends ConnectionFactory{
+/**
+ * @author rajni.ubhi
+ *
+ */
+public class ContextConnectionFactory extends ConnectionFactory {
 
 	private DataSource dataSource;
 	private Context context;
@@ -34,6 +38,7 @@ public class ContextConnectionFactory extends ConnectionFactory{
 	@Override
 	public Connection getConnection() throws SQLException {
 		// TODO Auto-generated method stub
+		logger.info("ABOUT TO CONNECT WITH DB THROUGH CONTEXT!!!!!");
 		return dataSource.getConnection();
 	}
 

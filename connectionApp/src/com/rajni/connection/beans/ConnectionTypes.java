@@ -1,6 +1,9 @@
 package com.rajni.connection.beans;
 
-
+/**
+ * @author rajni.ubhi
+ *
+ */
 public enum ConnectionTypes {
 	MYSQL , MYSQL_DS, ORACLE ,ORACLE_DS ,PERVASIVE ,PERVASIVE_DS;
 	

@@ -1,6 +1,10 @@
 package com.rajni.connection.beans;
 
-public abstract class ConnectionDetails implements AllConDetailsIntf{
+/**
+ * @author rajni.ubhi
+ *
+ */
+public abstract class ConnectionDetails implements AllConDetailsIntf {
 	protected ConnectionTypes conType;
 
 	public ConnectionTypes getConType() {

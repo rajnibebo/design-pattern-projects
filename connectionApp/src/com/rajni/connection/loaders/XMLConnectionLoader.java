@@ -8,6 +8,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import com.rajni.connection.beans.AllConDetailsIntf;
 import com.rajni.connection.beans.ConDManager;
 import com.rajni.connection.beans.ConDataSource;
 import com.rajni.connection.beans.ConnectionLoader;
@@ -16,7 +17,11 @@ import com.rajni.connection.beans.ContextConnectionDetail;
 import com.rajni.connection.beans.DBConf;
 import com.rajni.connection.beans.DManagerConnectionDetail;
 
-public class XMLConnectionLoader extends ConnectionLoader{
+/**
+ * @author rajni.ubhi
+ *
+ */
+public class XMLConnectionLoader extends ConnectionLoader {
 
 	private static DBConf instance = null;
 	@Override
@@ -25,7 +30,7 @@ public class XMLConnectionLoader extends ConnectionLoader{
 		// read from xml file here
 		InputStream is;
 		try {
-			is = new FileInputStream("C:/Users/acbd/workspace/Html5Workspace/connectionApp/src/com/rajni/connection/beans/DBConf.xml");
+			is = new FileInputStream(AllConDetailsIntf.LOAD_XML);
 			if (is != null) {
 				JAXBContext jc;
 				try {
@@ -36,8 +41,10 @@ public class XMLConnectionLoader extends ConnectionLoader{
 					if(instance != null) {
 						ConDataSource conDataSource = instance.getConDataSource();
 						for(ContextConnectionDetail conDetail : conDataSource.getConnectionSources()) {
-							conDetail.setConType(ConnectionTypes.getConnectionTypes(conDetail.getName()));
-							connectionDetails.put(conDetail.getConType(), conDetail);
+							if(conDataSource.isDataSource()) {
+								conDetail.setConType(ConnectionTypes.getConnectionTypes(conDetail.getName()));
+								connectionDetails.put(conDetail.getConType(), conDetail);
+							}			
 						}
 						ConDManager conManager = instance.getConDManager();
 						for(DManagerConnectionDetail conDetail : conManager.getConnectionSources()) {

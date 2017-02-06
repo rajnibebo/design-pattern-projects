@@ -5,11 +5,16 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import com.rajni.connection.beans.AllConDetailsIntf;
 import com.rajni.connection.beans.ConnectionLoader;
 import com.rajni.connection.beans.ConnectionTypes;
 import com.rajni.connection.beans.PropsConnectionDetail;
 
-public class PropsConnectionLoader extends ConnectionLoader{
+/**
+ * @author rajni.ubhi
+ *
+ */
+public class PropsConnectionLoader extends ConnectionLoader {
 
 	@Override
 	public void loadConfiguration() {
@@ -18,7 +23,7 @@ public class PropsConnectionLoader extends ConnectionLoader{
 		
 		try {
 			Properties props = new Properties();
-			FileInputStream fin = new FileInputStream("db.properties");
+			FileInputStream fin = new FileInputStream(AllConDetailsIntf.LOAD_PROPS);
 			props.load(fin);
 			
 			int size = props.keySet().size()/7;

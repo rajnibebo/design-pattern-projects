@@ -6,9 +6,13 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * @author rajni.ubhi
+ *
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="ConnectionSource")
-public class ContextConnectionDetail extends ConnectionDetails{
+public class ContextConnectionDetail extends ConnectionDetails {
 	
 	@XmlAttribute(name="name")
 	private String name;
